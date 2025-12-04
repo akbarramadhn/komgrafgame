@@ -1,1 +1,1 @@
-Game Komgraf
+jadi juga jing ni game
