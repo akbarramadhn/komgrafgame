@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Health : MonoBehaviour
 {
-    [Header ("Health")]
+    [Header("Health")]
     [SerializeField] private float startingHealth;
     public float currentHealth { get; private set; }
     private Animator anim;
@@ -21,6 +21,18 @@ public class Health : MonoBehaviour
     [Header("Death Sound")]
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip hurtSound;
+
+    public float MaxHealth => startingHealth;
+
+    public void AddMaxHealth(float amount, bool healToFull = true)
+    {
+        startingHealth += amount;
+
+        if (healToFull)
+            currentHealth = startingHealth;
+        else
+            currentHealth = Mathf.Clamp(currentHealth + amount, 0, startingHealth);
+    }
 
     private void Awake()
     {
